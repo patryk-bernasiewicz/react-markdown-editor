@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component, Fragment } from 'react';
+import { Grid } from 'semantic-ui-react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+import EditorContext from './editor-context';
+import Head from './components/Head';
+import Editor from './components/Editor';
+import Preview from './components/Preview';
+
+class App extends Component {
+  state = {
+    text: '',
+    html: ''
+  };
+
+  handleTextUpdate = value => {
+    this.setState({ text: value });
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <Head />
+        <EditorContext.Provider
+          value={{
+            text: this.state.text,
+            html: this.state.html,
+            handleTextUpdate: this.handleTextUpdate
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          <Grid style={{ width: '100%' }}>
+            <Grid.Column
+              mobile={16}
+              tablet={8}
+              stretched={true}
+              className='App__editor'
+            >
+              <Editor />
+            </Grid.Column>
+            <Grid.Column
+              mobile={16}
+              tablet={8}
+              stretched={true}
+              className='App__preview'
+            >
+              <Preview />
+            </Grid.Column>
+          </Grid>
+        </EditorContext.Provider>
+      </Fragment>
+    );
+  }
 }
 
 export default App;
