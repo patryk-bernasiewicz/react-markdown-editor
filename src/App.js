@@ -15,18 +15,14 @@ const App = () => {
   return (
     <Fragment>
       <Head />
-      <EditorContext.Provider value={{ text, handleTextUpdate }}>
-        <div className="stretch">
-          <Grid className="stretch">
-            <Grid.Column tablet={8} className="App__editor">
-              <Editor />
-            </Grid.Column>
-            <Grid.Column tablet={8} className="App__preview">
-              <Preview />
-            </Grid.Column>
-          </Grid>
-        </div>
-      </EditorContext.Provider>
+      <Grid className="stretch">
+        <Grid.Column tablet={8} className="App__editor">
+          <Editor handleTextUpdate={handleTextUpdate} />
+        </Grid.Column>
+        <Grid.Column tablet={8} className="App__preview">
+          <Preview source={text} />
+        </Grid.Column>
+      </Grid>
     </Fragment>
   );
 };

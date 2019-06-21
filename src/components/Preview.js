@@ -1,23 +1,15 @@
-import React, { useEffect } from 'react';
-import EditorContext from '../editor-context';
+import React, { useState, useEffect } from 'react';
 import marked from 'marked';
 
-const Preview = () => {
+const Preview = ({ source }) => {
+  const [markdown, setMarkdown] = useState('');
+
   useEffect(() => {
-    console.log('one time?');
-  }, []);
+    setMarkdown(source ? marked(source) : '');
+  }, [source]);
 
   return (
-    <EditorContext.Consumer>
-      {context => (
-        <div
-          className="preview"
-          dangerouslySetInnerHTML={{
-            __html: context.text ? marked(context.text) : ''
-          }}
-        />
-      )}
-    </EditorContext.Consumer>
+    <div className="preview" dangerouslySetInnerHTML={{ __html: markdown }} />
   );
 };
 
