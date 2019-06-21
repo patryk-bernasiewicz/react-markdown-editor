@@ -12,9 +12,10 @@ const Editor = () => {
           ref={editorRef}
           content={context.text}
           onChange={(e, value) => context.handleTextUpdate(value)}
-          tagName='div'
+          tagName="div"
           multiLine={true}
           focus={true}
+          style={{ height: '100%' }}
         />
       )}
     </EditorContext.Consumer>
