@@ -2,7 +2,6 @@ import React, { Fragment, useState } from 'react';
 import { Grid } from 'semantic-ui-react';
 import './App.css';
 
-import EditorContext from './editor-context';
 import Head from './components/Head';
 import Editor from './components/Editor';
 import Preview from './components/Preview';
